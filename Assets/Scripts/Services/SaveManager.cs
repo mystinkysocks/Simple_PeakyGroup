@@ -42,11 +42,22 @@ public class SaveManager : IService
         data.cells.Add(entry);
         return entry;
     }
+    public BuildingEntry GetBuildingEntryById(string id)
+    {
+        for (int i = 0; i < data.buildings.Count; i++)
+            if (data.buildings[i].id == id)
+                return data.buildings[i];
+
+        var entry = new BuildingEntry(id);
+        data.buildings.Add(entry);
+        return entry;
+    }
 
     [Serializable]
     public class Data
     {
         public List<CellEntry> cells = new List<CellEntry>();
+        public List<BuildingEntry> buildings = new List<BuildingEntry>();
     }
 }
 
@@ -61,5 +72,17 @@ public class CellEntry
         this.id = id;
         isOccupied = false;
         buildingId = null;
+    }
+}
+
+[Serializable]
+public class BuildingEntry
+{
+    public string id;
+    public int level;
+    public BuildingEntry(string id)
+    {
+        this.id = id;
+        level = 0;
     }
 }

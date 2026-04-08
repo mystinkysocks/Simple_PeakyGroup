@@ -6,11 +6,11 @@ public class UpgradeBuilding : BaseBuilding
     [SerializeField] private MeshRenderer meshRenderer;
     [field: SerializeField] public int MaxLevel = 5;
     [SerializeField] private List<Color> colors = new List<Color>();
-    public int Level { get; private set; } = 0;
 
-    public override void Init()
+    public int Level => entry.level;
+    public override void Init(BuildingEntry entry)
     {
-        base.Init();
+        base.Init(entry);
         UpdateBuilding();
     }
     public override void OnClick()
@@ -23,18 +23,18 @@ public class UpgradeBuilding : BaseBuilding
 
     public void Upgrade()
     {
-        if (Level >= MaxLevel - 1)
+        if (entry.level >= MaxLevel - 1)
         {
             return;
         }
 
-        Level++;
+        entry.level++;
         UpdateBuilding();
     }
     private void UpdateBuilding()
     {
-        meshRenderer.material.color = colors[Level];
-        UpdateText($"Type: {ID}\nLevel: {Level + 1}");
+        meshRenderer.material.color = colors[entry.level];
+        UpdateText($"Type: {ID}\nLevel: {entry.level + 1}");
     }
 
     private void OnValidate()

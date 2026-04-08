@@ -26,12 +26,14 @@ public class BuildingManager : MonoBehaviour, IService
     }
     public bool TryBuild(string id, Vector3 position, out BaseBuilding building)
     {
-        if(dict.TryGetValue(id, out BaseBuilding prefab))
+        if (ServiceLocator.Instance.TryGet(out SaveManager saveManager))
         {
-            building = Instantiate(prefab, position, Quaternion.identity, transform);
-            building.Init();
-            buildings.Add(building);
-            return true;
+            if (dict.TryGetValue(id, out BaseBuilding prefab))
+            {
+                building = Instantiate(prefab, position, Quaternion.identity, transform);
+                buildings.Add(building);
+                return true;
+            }
         }
         building = null;
         return false;

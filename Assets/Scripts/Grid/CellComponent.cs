@@ -30,7 +30,12 @@ public class CellComponent : MonoBehaviour, IClickable
         if (building == null)
             return;
 
+        if (!ServiceLocator.Instance.TryGet(out SaveManager service))
+            return;
+
         Building = building;
+        Building.Init(service.GetBuildingEntryById(entry.id));
+
         entry.isOccupied = true;
         entry.buildingId = building.ID;
     }
