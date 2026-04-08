@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3586449559169477112}
   - component: {fileID: 3149688425872165188}
   - component: {fileID: 2097132524185583705}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CellComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ccda7e3bfafbfc4a8dddc6734e84ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CellComponent
+  <Size>k__BackingField: 1
 --- !u!1 &7761593173038632133
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ GameObject:
   - component: {fileID: 852398274466383965}
   - component: {fileID: 4246854125249044079}
   - component: {fileID: 6142834787752880683}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

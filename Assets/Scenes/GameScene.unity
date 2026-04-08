@@ -315,6 +315,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputHandler
   cam: {fileID: 330585545}
+  hoverMask:
+    serializedVersion: 2
+    m_Bits: 128
+  clickMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +701,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1400690084208584003, guid: f798a311466ac1d49964413110101115, type: 3}
+      propertyPath: prefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400690084208584003, guid: f798a311466ac1d49964413110101115, type: 3}
+      propertyPath: 'prefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 746580856815157936, guid: aafb9575f4d882b42bd7186f22e159fe, type: 3}
+    - target: {fileID: 1400690084208584003, guid: f798a311466ac1d49964413110101115, type: 3}
+      propertyPath: 'prefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 276842246417954967, guid: 7ba314e7407fc4f42bcc562de7773b7d, type: 3}
+    - target: {fileID: 1400690084208584003, guid: f798a311466ac1d49964413110101115, type: 3}
+      propertyPath: 'prefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8868681614521698017, guid: 5baa0164bba7fcb4db66c97737900d9b, type: 3}
+    - target: {fileID: 1400690084208584003, guid: f798a311466ac1d49964413110101115, type: 3}
+      propertyPath: 'prefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8868681614521698017, guid: 11e82b8c09e9dc0479f5c34884bfd088, type: 3}
     - target: {fileID: 5232357135631723371, guid: f798a311466ac1d49964413110101115, type: 3}
       propertyPath: m_Name
       value: BuildingManager

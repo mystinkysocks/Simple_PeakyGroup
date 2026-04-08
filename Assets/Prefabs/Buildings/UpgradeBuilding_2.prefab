@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3094988011668371186}
   - component: {fileID: 3019474480723380615}
   - component: {fileID: 7044740622813866729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4346141723950573047}
   - component: {fileID: 8868681614521698017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpgradeBuilding_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeBuilding
   <ID>k__BackingField: upgrade_2
-  textComponent: {fileID: 7044740622813866729}
+  infoComponent: {fileID: 170760168870449712}
   meshRenderer: {fileID: 2097680111705209844}
   MaxLevel: 5
   colors:
@@ -206,7 +206,9 @@ GameObject:
   - component: {fileID: 6295551565170414713}
   - component: {fileID: 3349331063056984381}
   - component: {fileID: 2097680111705209844}
-  m_Layer: 0
+  - component: {fileID: 170760168870449712}
+  - component: {fileID: 3739146792518390113}
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,6 +287,40 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &170760168870449712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984682488980434495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3d6461053eb15429db9cff57c9e36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingInfoComponent
+  textComponent: {fileID: 7044740622813866729}
+--- !u!135 &3739146792518390113
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5984682488980434495}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6914125870900213785
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +333,7 @@ GameObject:
   - component: {fileID: 7334062218617546411}
   - component: {fileID: 5803931467940718637}
   - component: {fileID: 4384311958219319281}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

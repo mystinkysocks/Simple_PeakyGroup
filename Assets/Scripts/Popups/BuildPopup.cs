@@ -46,7 +46,7 @@ public class BuildPopup : BasePopup
     {
         if(ServiceLocator.Instance.TryGet(out BuildingManager buildingManager))
         {
-            if(buildingManager.TryBuild(selectedItem.ID, cellComponent.transform.position, out BaseBuilding building))
+            if(buildingManager.TryBuild(selectedItem.ID, cellComponent.transform, out BaseBuilding building))
             {
                 cellComponent.SetBuilding(building);
             }

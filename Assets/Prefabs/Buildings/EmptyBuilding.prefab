@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 6966282743281052225}
   - component: {fileID: 3454980144657375417}
   - component: {fileID: 7915496118176019280}
-  m_Layer: 0
+  - component: {fileID: 536865821390332724}
+  - component: {fileID: 6481643099333215356}
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,6 +92,40 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &536865821390332724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399886225320726195}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6481643099333215356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2399886225320726195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3d6461053eb15429db9cff57c9e36b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingInfoComponent
+  textComponent: {fileID: 2659358547702955676}
 --- !u!1 &2933042474093700294
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,7 +138,7 @@ GameObject:
   - component: {fileID: 7753126522616946719}
   - component: {fileID: 5840046904114794494}
   - component: {fileID: 669922811645848785}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3187753909685816876}
   - component: {fileID: 276842246417954967}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EmptyBuilding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyBuilding
   <ID>k__BackingField: empty
-  textComponent: {fileID: 2659358547702955676}
+  infoComponent: {fileID: 6481643099333215356}
 --- !u!1 &6788133276461785400
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +287,7 @@ GameObject:
   - component: {fileID: 2233672184105376878}
   - component: {fileID: 3086170991067559657}
   - component: {fileID: 2659358547702955676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

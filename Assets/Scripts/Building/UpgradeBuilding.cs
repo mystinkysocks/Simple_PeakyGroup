@@ -34,7 +34,7 @@ public class UpgradeBuilding : BaseBuilding
     private void UpdateBuilding()
     {
         meshRenderer.material.color = colors[entry.level];
-        UpdateText($"Type: {ID}\nLevel: {entry.level + 1}");
+        infoComponent.UpdateText($"Type: {ID}\nLevel: {entry.level + 1}");
     }
 
     private void OnValidate()

@@ -14,7 +14,7 @@ public class CellComponent : MonoBehaviour, IClickable
         {
             if(ServiceLocator.Instance.TryGet(out BuildingManager service))
             {
-                if(service.TryBuild(entry.buildingId, transform.position, out BaseBuilding building))
+                if(service.TryBuild(entry.buildingId, transform, out BaseBuilding building))
                 {
                     SetBuilding(building);
                 }

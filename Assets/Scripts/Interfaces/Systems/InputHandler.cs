@@ -4,30 +4,55 @@ using UnityEngine.EventSystems;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private Camera cam;
+    [SerializeField] private LayerMask hoverMask;
+    [SerializeField] private LayerMask clickMask;
+
+    private IHoverable currentHover;
 
     private void Update()
     {
-        OnClickHandler();
+        HoverHandler();
+        ClickHandler();
     }
 
-    private void OnClickHandler()
+    private void HoverHandler()
     {
-        if (Input.GetMouseButtonDown(0))
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, hoverMask))
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
+            var hover = hit.collider.GetComponent<IHoverable>();
 
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (hover != currentHover)
             {
-                if (hit.collider.TryGetComponent<IClickable>(out var clickable))
-                {
-                    clickable.OnClick();
-                }
+                currentHover?.OnHoverExit();
+
+                currentHover = hover;
+                currentHover?.OnHoverEnter();
             }
+        }
+        else
+        {
+            currentHover?.OnHoverExit();
+            currentHover = null;
+        }
+    }
+
+    private void ClickHandler()
+    {
+        if (!Input.GetMouseButtonDown(0))
+            return;
+
+        if (EventSystem.current.IsPointerOverGameObject())
+            return;
+
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, clickMask))
+        {
+            var clickable = hit.collider.GetComponent<IClickable>();
+
+            clickable?.OnClick();
         }
     }
 }
