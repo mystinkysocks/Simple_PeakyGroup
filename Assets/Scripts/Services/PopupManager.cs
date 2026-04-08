@@ -6,52 +6,54 @@ using UnityEngine;
 public class PopupManager : MonoBehaviour, IService
 {
     [SerializeField] private Transform container;
-    [SerializeField] private GameObject[] popups; 
+    [SerializeField] private BasePopup[] prefabs;
 
-    private Dictionary<Type, GameObject> popupDict = new Dictionary<Type, GameObject>();
+    private Dictionary<Type, BasePopup> dict = new Dictionary<Type, BasePopup>();
+    private BasePopup lastPopup;
 
-    private GameObject lastPopup;
     private void Start()
     {
         ServiceLocator.Instance.Register(this);
     }
+
     public IEnumerator Init()
     {
         BuildDictionary();
-        yield return new WaitForEndOfFrame();
+        yield return null;
     }
+
     private void BuildDictionary()
     {
-        popupDict.Clear();
-        foreach (var prefab in popups)
+        dict.Clear();
+        foreach (var popup in prefabs)
         {
-            if (prefab == null) continue;
+            if (popup == null) continue;
 
-            Type type = prefab.GetComponent<BasePopup<object>>()?.GetType();
-            if (type != null && !popupDict.ContainsKey(type))
+            Type type = popup.GetType();
+            if (!dict.ContainsKey(type))
             {
-                popupDict.Add(type, prefab);
+                dict.Add(type, popup);
             }
         }
     }
 
-    public TPopup Create<TPopup>() where TPopup : BasePopup<object>
+    public TPopup Create<TPopup>() where TPopup : BasePopup
     {
-        if (!popupDict.TryGetValue(typeof(TPopup), out var prefab))
+        if (!dict.TryGetValue(typeof(TPopup), out var prefab))
             return null;
 
-        GameObject obj = Instantiate(prefab, container);
-        TPopup popup = obj.GetComponent<TPopup>();
+        BasePopup obj = Instantiate(prefab, container);
+        TPopup popup = obj as TPopup;
         if (popup == null)
         {
-            Destroy(obj);
+            Destroy(obj.gameObject);
             return null;
         }
 
-        if(lastPopup != null)
-            Destroy(lastPopup);
+        if (lastPopup != null)
+            Destroy(lastPopup.gameObject);
 
-        lastPopup = obj;
+        lastPopup = popup;
         return popup;
     }
 }

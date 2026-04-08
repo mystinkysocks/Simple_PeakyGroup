@@ -14,7 +14,10 @@ public class CellComponent : MonoBehaviour, IClickable
     }
     public void OnClick()
     {
-        Debug.Log($"On click: {gameObject.name}");
+        if(ServiceLocator.Instance.TryGet(out PopupManager service))
+        {
+            var popup = service.Create<BuildPopup>();
+        }
     }
 
     private void OnDrawGizmosSelected()

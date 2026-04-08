@@ -1,6 +1,13 @@
 using UnityEngine;
 
-public abstract class BasePopup<TData> : MonoBehaviour
+public abstract class BasePopup : MonoBehaviour
 {
-    public abstract void Init(TData data);
+    public virtual void Show()
+    {
+
+    }
+    public virtual void Hide() 
+    {
+        Destroy(gameObject);
+    }
 }
