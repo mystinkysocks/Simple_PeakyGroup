@@ -1,7 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridBuilder : MonoBehaviour
+public class GridBuilder : MonoBehaviour, IService
 {
     [SerializeField] private GridProperties props;
 
@@ -9,11 +10,18 @@ public class GridBuilder : MonoBehaviour
 
     private void Start()
     {
-        BuildGrid();
+        ServiceLocator.Instance.Register(this);
     }
-
+    public IEnumerator Init()
+    {
+        BuildGrid();
+        yield return new WaitForEndOfFrame();
+    }
     public void BuildGrid()
     {
+        if (!ServiceLocator.Instance.TryGet(out SaveManager save))
+            return;
+
         float size = props.CellPrefab.Size;
         float stepX = size + props.Spacing.x;
         float stepY = size + props.Spacing.y;
@@ -25,11 +33,12 @@ public class GridBuilder : MonoBehaviour
                 Vector3 pos = transform.position + new Vector3(props.Padding.x + x * stepX, 0, props.Padding.y + y * stepY);
 
                 var cell = Instantiate(props.CellPrefab, pos, Quaternion.identity, transform);
-                cell.Init();
+                cell.Init(save.GetCellEntryById($"{x}_{y}"));
                 cells.Add(cell);
             }
         }
     }
+
     public void RebuildGrid()
     {
         for (int i = 0; i < cells.Count; i++)

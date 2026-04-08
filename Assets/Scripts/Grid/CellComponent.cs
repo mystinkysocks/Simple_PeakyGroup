@@ -4,11 +4,22 @@ using UnityEngine;
 public class CellComponent : MonoBehaviour, IClickable
 {
     [field: SerializeField] public float Size { get; private set; } = 1f;
-
     public BaseBuilding Building { get; private set; }
-    public void Init()
+
+    private CellEntry entry;
+    public void Init(CellEntry entry)
     {
-        
+        this.entry = entry;
+        if (entry.isOccupied)
+        {
+            if(ServiceLocator.Instance.TryGet(out BuildingManager service))
+            {
+                if(service.TryBuild(entry.buildingId, transform.position, out BaseBuilding building))
+                {
+                    SetBuilding(building);
+                }
+            }
+        }
     }
     public void DeInit()
     {
@@ -16,7 +27,12 @@ public class CellComponent : MonoBehaviour, IClickable
     }
     public void SetBuilding(BaseBuilding building)
     {
+        if (building == null)
+            return;
+
         Building = building;
+        entry.isOccupied = true;
+        entry.buildingId = building.ID;
     }
     public void OnClick()
     {
