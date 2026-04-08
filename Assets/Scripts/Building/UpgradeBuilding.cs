@@ -11,7 +11,7 @@ public class UpgradeBuilding : BaseBuilding
     public override void Init()
     {
         base.Init();
-        meshRenderer.material.color = colors[Level];
+        UpdateBuilding();
     }
     public override void OnClick()
     {
@@ -29,7 +29,12 @@ public class UpgradeBuilding : BaseBuilding
         }
 
         Level++;
+        UpdateBuilding();
+    }
+    private void UpdateBuilding()
+    {
         meshRenderer.material.color = colors[Level];
+        UpdateText($"Type: {ID}\nLevel: {Level + 1}");
     }
 
     private void OnValidate()
