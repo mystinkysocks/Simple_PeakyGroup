@@ -19,6 +19,11 @@ public class SaveManager : IService
         PlayerPrefs.SetString(saveKey, json);
         PlayerPrefs.Save();
     }
+    public void Clean()
+    {
+        data = new Data();
+        Save();
+    }
     private void Load()
     {
         if (PlayerPrefs.HasKey(saveKey))
