@@ -9,7 +9,7 @@ public class DescriptionBuilding : BaseBuilding
     {
         if (ServiceLocator.Instance.TryGet(out PopupManager popupManager))
         {
-            // TODO: Show description panel
+            popupManager.Create<DescriptionPopup>()?.Init(nameText, descriptionText);
         }
     }
 }
