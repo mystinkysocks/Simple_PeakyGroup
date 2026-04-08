@@ -6,6 +6,7 @@ public class GridBuilder : MonoBehaviour, IService
 {
     [SerializeField] private GridProperties props;
 
+    public CellComponent[,] Grid {  get; private set; }
     private List<CellComponent> cells = new List<CellComponent>();
 
     private void Start()
@@ -22,6 +23,8 @@ public class GridBuilder : MonoBehaviour, IService
         if (!ServiceLocator.Instance.TryGet(out SaveManager save))
             return;
 
+        Grid = new CellComponent[props.Width, props.Height];
+
         float size = props.CellPrefab.Size;
         float stepX = size + props.Spacing.x;
         float stepY = size + props.Spacing.y;
@@ -35,6 +38,8 @@ public class GridBuilder : MonoBehaviour, IService
                 var cell = Instantiate(props.CellPrefab, pos, Quaternion.identity, transform);
                 cell.Init(save.GetCellEntryById($"{x}_{y}"));
                 cells.Add(cell);
+
+                Grid[x, y] = cell;
             }
         }
     }

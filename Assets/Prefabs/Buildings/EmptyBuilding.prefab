@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65bc273b77980594d988c4b92d4d8ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyBuilding
-  <ID>k__BackingField: empty
+  <ID>k__BackingField: decor
   infoComponent: {fileID: 6481643099333215356}
 --- !u!1 &6788133276461785400
 GameObject:
