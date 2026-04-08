@@ -30,7 +30,7 @@ public class BuildingManager : MonoBehaviour, IService
         {
             if (dict.TryGetValue(id, out BaseBuilding prefab))
             {
-                building = Instantiate(prefab, point.position, Quaternion.identity, point);
+                building = Instantiate(prefab, point.position, point.rotation, point);
                 buildings.Add(building);
                 return true;
             }
