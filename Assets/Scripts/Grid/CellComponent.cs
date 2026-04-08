@@ -4,6 +4,8 @@ using UnityEngine;
 public class CellComponent : MonoBehaviour, IClickable
 {
     [field: SerializeField] public float Size { get; private set; } = 1f;
+
+    public BaseBuilding Building { get; private set; }
     public void Init()
     {
         
@@ -12,11 +14,22 @@ public class CellComponent : MonoBehaviour, IClickable
     {
         Destroy(gameObject);
     }
+    public void SetBuilding(BaseBuilding building)
+    {
+        Building = building;
+    }
     public void OnClick()
     {
-        if(ServiceLocator.Instance.TryGet(out PopupManager service))
+        if (Building)
         {
-            var popup = service.Create<BuildPopup>();
+            Building.OnClick();
+        }
+        else
+        {
+            if (ServiceLocator.Instance.TryGet(out PopupManager service))
+            {
+                service.Create<BuildPopup>()?.Init(this);
+            }
         }
     }
 

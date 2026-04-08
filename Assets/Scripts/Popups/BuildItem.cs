@@ -11,10 +11,12 @@ public class BuildItem : MonoBehaviour
 
     public UnityEvent<BuildItem> onClick = new UnityEvent<BuildItem>();
 
+    public string ID { get; private set; }
     public bool IsSelected {  get; private set; }
 
-    public void Init(string text)
+    public void Init(string id, string text)
     {
+        ID = id;
         textComponent.text = text;
         buttonComponent.onClick.AddListener(OnClick);
         SetSelected(false);

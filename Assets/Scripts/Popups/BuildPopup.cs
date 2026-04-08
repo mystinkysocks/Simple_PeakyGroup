@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.LightTransport;
 using UnityEngine.UI;
 
 public class BuildPopup : BasePopup
@@ -12,26 +13,46 @@ public class BuildPopup : BasePopup
     [SerializeField] private Button closeButton;
 
     private List<BuildItem> items = new();
-    private BuildItem selectedItem;
 
-    private void Start()
+    private BuildItem selectedItem;
+    private CellComponent cellComponent;
+
+    public void Init(CellComponent cell)
     {
+        cellComponent = cell;
+
+        if (ServiceLocator.Instance.TryGet(out BuildingManager building))
+        {
+            var prefabs = building.GetBuildingsPrefab();
+            for (int i = 0; i < prefabs.Length; i++)
+            {
+                var item = Instantiate(prefab, container);
+                item.Init(prefabs[i].ID, prefabs[i].ID);
+                item.onClick.AddListener(OnClick);
+                items.Add(item);
+            }
+        }
+        else
+        {
+            Hide();
+        }
+
         buildButton.onClick.AddListener(OnBuildButton);
         closeButton.onClick.AddListener(OnCloseButton);
-
-        for (int i = 0; i < 2; i++)
-        {
-            var item = Instantiate(prefab, container);
-            item.Init($"Type: {i}");
-            item.onClick.AddListener(OnClick);
-            items.Add(item);
-        }
 
         SetSelectedItem(null);
     }
     private void OnBuildButton()
     {
+        if(ServiceLocator.Instance.TryGet(out BuildingManager buildingManager))
+        {
+            if(buildingManager.TryBuild(selectedItem.ID, cellComponent.transform.position, out BaseBuilding building))
+            {
+                cellComponent.SetBuilding(building);
+            }
+        }
 
+        Hide();
     }
     private void OnCloseButton()
     {
